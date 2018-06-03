@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
+import Grid from "@material-ui/core/Grid";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -24,19 +25,23 @@ class TodoItems extends Component {
 		return (
 			<div className="TodoItems">
 				<ListItem>
-					<ListItemText>
-						{this.props.todo.title}
-						<Button
-							variant="fab"
-							enabled
-							mini
-							aria-label="delete"
-							onClick={this.deleteProject.bind(this, this.props.todo.id)}
-							className={classes.button}
-						>
-							<DeleteIcon />
-						</Button>
-					</ListItemText>
+					<Grid container spacing={24} alignItems="center" direction="row">
+						<Grid item xs={8}>
+							<ListItemText> {this.props.todo.title} </ListItemText>
+						</Grid>
+						<Grid item xs={4}>
+							<Button
+								variant="fab"
+								enabled
+								mini
+								aria-label="delete"
+								onClick={this.deleteProject.bind(this, this.props.todo.id)}
+								className={classes.button}
+							>
+								<DeleteIcon />
+							</Button>
+						</Grid>
+					</Grid>
 				</ListItem>
 				<Divider />
 			</div>

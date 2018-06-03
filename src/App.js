@@ -1,9 +1,26 @@
 import React, { Component } from "react";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import uuid from "uuid";
 
 import Todo from "./components/Todo";
 import AddTodos from "./components/AddTodos";
+
+import { withStyles } from "@material-ui/core/styles";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Grid from "@material-ui/core/Grid";
+import Card from "@material-ui/core/Card";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import Typography from "@material-ui/core/Typography";
+
+const styles = {
+	card: {
+		maxWidth: 345
+	},
+	media: {
+		height: 0,
+		paddingTop: "56.25%" // 16:9
+	}
+};
 
 class App extends Component {
 	constructor() {
@@ -37,7 +54,6 @@ class App extends Component {
 	}
 
 	handleAddTodo(todo) {
-		//console.log(todo);
 		let todos = this.state.todos;
 		this.setState({ todos: [...todos, todo] });
 	}
@@ -50,15 +66,29 @@ class App extends Component {
 	}
 
 	render() {
+		const { classes } = this.props;
+
 		return (
 			<div className="App">
 				<React.Fragment>
 					<CssBaseline>
-						<Todo
-							todos={this.state.todos}
-							onDelete={this.handleDeleteProject.bind(this)}
-						/>
-						<AddTodos addTodo={this.handleAddTodo.bind(this)} />
+						<Card className={classes.card}>
+							<Grid container spacing={24}>
+								<Grid item xs={12}>
+									<CardContent>
+										<Todo
+											todos={this.state.todos}
+											onDelete={this.handleDeleteProject.bind(this)}
+										/>
+									</CardContent>
+								</Grid>
+								<Grid item xs={12}>
+									<CardActions>
+										<AddTodos addTodo={this.handleAddTodo.bind(this)} />
+									</CardActions>
+								</Grid>
+							</Grid>
+						</Card>
 					</CssBaseline>
 				</React.Fragment>
 			</div>
@@ -66,4 +96,4 @@ class App extends Component {
 	}
 }
 
-export default App;
+export default withStyles(styles)(App);

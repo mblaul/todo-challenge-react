@@ -14,15 +14,13 @@ const styles = theme => ({
 	textField: {
 		marginLeft: theme.spacing.unit,
 		marginRight: theme.spacing.unit,
-		width: 200,
-		backgroundColor: theme.palette.background.paper
+		width: 200
 	},
 	button: {
 		margin: theme.spacing.unit
 	},
 	menu: {
-		width: 200,
-		backgroundColor: theme.palette.background.paper
+		width: 200
 	}
 });
 
